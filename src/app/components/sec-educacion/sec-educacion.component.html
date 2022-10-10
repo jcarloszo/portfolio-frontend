@@ -1,0 +1,75 @@
+<hr>
+<section class="container">
+    <h5>Educación</h5>
+    <div class="row">
+        <app-detail-educacion 
+          (eventMoverArriba)="getEventMoverArriba($event)" 
+          (eventMoverAbajo)="getEventMoverAbajo($event)" 
+          (eventEditar)="getEventEditar($event)"
+          (eventBorrar)="getEventBorrar($event)" 
+          *ngFor="let educacion of educacions" [educacion]="educacion" 
+          class="col-md-12">
+        </app-detail-educacion>
+    </div>
+    <div *ngIf="Login()" class="text-center">
+        <app-btn-add (click)="clickAgregar()" data-bs-toggle="modal" data-bs-target="#educacionModal"></app-btn-add>
+    </div>
+</section>
+
+<!-- Modal -->
+<div *ngIf="Login()" class="modal fade" id="educacionModal" tabindex="-1" aria-labelledby="exampleModalLabel1"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">{{formTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
+          <div>
+            <label for="nombreorg" class="form-label">Nombre de la institución: </label>
+            <input formControlName="nombreInstitucion" type="text" class="form-control" id="nombreorg">
+          </div>
+          <div *ngIf="NombreInst?.errors" class="mb-3 text-danger">
+            <small *ngIf="NombreInst?.hasError('required')">
+              El nombre de la institución es requerido.
+            </small>
+          </div>
+          <div class="mt-3">
+            <label for="urlImagen" class="form-label">URL de la imagen: </label>
+            <input formControlName="urlImagen" type="text" class="form-control" id="urlImagen">
+          </div>
+          <div class="mt-3">
+            <label for="puesto" class="form-label">Título obtenido o a obtener: </label>
+            <input formControlName="titulo" type="text" class="form-control" id="puesto">
+          </div>
+          <div *ngIf="Titulo?.errors" class="mb-3 text-danger">
+            <small *ngIf="Titulo?.hasError('required')">
+              El título es requerido.
+            </small>
+          </div>
+          <div class="row">
+            <div class="mt-3 col">
+              <label for="fechaInicio" class="form-label d-block">Fecha inicio:</label>
+              <input type="date" formControlName="fechaInicio" id="fechaInicio" class="form-control">
+              <div *ngIf="FechaInicio?.errors" class="mb-3 text-danger">
+                <small *ngIf="FechaInicio?.hasError('required')">
+                  La fecha de inicio es requerida.
+                </small>
+              </div>
+            </div>
+            <div class="mt-3 col">
+              <label for="fechaFin" class="form-label d-block">Fecha fin:</label>
+              <input type="date" formControlName="fechaFin" id="fechaFin" class="form-control">
+            </div>
+          </div>
+          
+          <br>
+          <button class="btn btn-success">Confirmar</button>
+          <button class="btn btn-secondary mx-3" type="reset">Limpiar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

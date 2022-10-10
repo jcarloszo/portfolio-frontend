@@ -1,0 +1,20 @@
+<div style="max-width: 168px;">
+    <p class="text-center mt-3" style="margin-bottom: -5px;">{{skill?.nombre}}</p>
+    <div class="circle-wrap mt-2 mb-1">
+        <div class="circle">
+            <div class="mask full" [ngStyle]="{'transform': rotation}">
+                <div class="fill" [ngStyle]="{'transform': rotation}"></div>
+            </div>
+            <div class="mask half">
+                <div class="fill" [ngStyle]="{'transform': rotation}"></div>
+            </div>
+            <div class="inside-circle"> {{skill?.progreso}}% </div>
+        </div>
+    </div>
+    <div *ngIf="Login()">
+        <app-btn-edit (click)="ejecutarEvento()" data-bs-toggle="modal" data-bs-target="#skillModal"></app-btn-edit>
+        <app-btn-delete (click)="ejecutarBorrar()"></app-btn-delete>
+        <app-btn-asc (click)="moverArriba(skill?.posicion)"></app-btn-asc>
+        <app-btn-des (click)="moverAbajo(skill?.posicion)"></app-btn-des>
+    </div>
+</div>

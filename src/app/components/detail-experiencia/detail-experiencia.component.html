@@ -1,0 +1,25 @@
+<div>
+    <div class="d-sm-flex align-items-center">
+        <div class="text-center logo-organizacion">
+            <img *ngIf="!ValidImg()" class="shadow rounded" width="100" src="../../../assets/img/logodefecto.png" alt="{{experiencia?.nombreOrganizacion}}">
+            <img *ngIf="ValidImg()" class="shadow rounded" src="{{experiencia?.urlImagen}}" width="100" alt="{{experiencia?.nombreOrganizacion}}">
+        </div>
+        <div class="" style="width: -webkit-fill-available;">
+            <div class="d-flex justify-content-between">
+                <h6>{{experiencia?.nombreOrganizacion}}</h6>
+                <div *ngIf="Login()" class="d-inline-block">
+                    <app-btn-edit (click)="ejecutarEvento()" data-bs-toggle="modal" data-bs-target="#experienciaModal"></app-btn-edit>
+                    <app-btn-delete (click)="ejecutarBorrar()"></app-btn-delete>
+                    <app-btn-asc (click)="moverArriba(experiencia?.posicion)"></app-btn-asc>
+                    <app-btn-des (click)="moverAbajo(experiencia?.posicion)"></app-btn-des>
+                </div>
+            </div>
+            <p>{{experiencia?.puesto}}</p>
+            <p>{{experiencia?.descripcionPuesto}}</p>
+            <p class="pb-0">
+                <span>{{FormatDate(experiencia?.fechaInicio)}}</span>-<span>{{FormatDate(experiencia?.fechaFin)}}</span>
+            </p>
+        </div>
+    </div>
+</div>
+<br>

@@ -1,0 +1,16 @@
+.perfil {
+    margin-top: -75px;
+    margin-right: 20px;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.img-shadow {
+    box-shadow: 1px 1px 5px 0px #6c6c6c;
+}
+
+section.container {
+    max-width: 930px;
+}

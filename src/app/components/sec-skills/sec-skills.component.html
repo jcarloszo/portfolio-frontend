@@ -1,0 +1,60 @@
+<hr>
+<section class="container">
+    <h5>Hard & Soft Skills</h5>
+    <div class="d-flex flex-wrap justify-content-around">
+        <app-detail-skill 
+            (eventMoverArriba)="getEventMoverArriba($event)"
+            (eventMoverAbajo)="getEventMoverAbajo($event)" 
+            (eventEditar)="getEventEditar($event)"
+            (eventBorrar)="getEventBorrar($event)" 
+            *ngFor="let skill of skills" 
+            [skill]="skill">
+        </app-detail-skill>
+    </div>
+    <div *ngIf="Login()" class="text-center mt-3">
+        <app-btn-add (click)="clickAgregar()" data-bs-toggle="modal" data-bs-target="#skillModal"></app-btn-add>
+    </div>
+</section>
+
+<!-- Modal -->
+<div *ngIf="Login()" class="modal fade" id="skillModal" tabindex="-1" aria-labelledby="exampleModalLabel1"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">{{formTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
+                    <div>
+                        <label for="nombre" class="form-label">Nombre de la skill: </label>
+                        <input formControlName="nombre" type="text" class="form-control" id="nombre">
+                    </div>
+                    <div *ngIf="Nombre?.errors" class="mb-3 text-danger">
+                        <small *ngIf="Nombre?.hasError('required')">
+                            El nombre de la skill es requerido.
+                        </small>
+                    </div>
+                    <div class="mt-3">
+                        <label for="progreso" class="form-label">Progreso: </label><span> {{ProgresoValue}}%</span>
+                        <input formControlName="progreso" type="range" class="form-range" id="progreso" min="0"
+                            max="100" value="50">
+                    </div>
+                    <div *ngIf="Progreso?.errors" class="mb-3 text-danger">
+                        <small *ngIf="Progreso?.hasError('min')">
+                            El valor mínimo es de 0%.
+                        </small>
+                        <small *ngIf="Progreso?.hasError('max')">
+                            El valor máximo es de 100%.
+                        </small>
+                    </div>
+
+                    <br>
+                    <button class="btn btn-success">Confirmar</button>
+                    <button class="btn btn-secondary mx-3" type="reset" (click)="clickAgregar()">Limpiar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

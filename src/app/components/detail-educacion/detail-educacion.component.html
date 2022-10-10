@@ -1,0 +1,24 @@
+<div>
+    <div class="d-sm-flex align-items-center">
+        <div class="text-center logo-organizacion">
+            <img *ngIf="!ValidImg()" class="shadow rounded" width="100" src="../../../assets/img/logodefecto.png" alt="{{educacion?.nombreInstitucion}}">
+            <img *ngIf="ValidImg()" class="shadow rounded" src="{{educacion?.urlImagen}}" width="100" alt="{{educacion?.nombreInstitucion}}">
+        </div>
+        <div class="" style="width: -webkit-fill-available;">
+            <div class="d-flex justify-content-between">
+                <h6>{{educacion?.nombreInstitucion}}</h6>
+                <div *ngIf="Login()" class="d-inline-block">
+                    <app-btn-edit (click)="ejecutarEvento()" data-bs-toggle="modal" data-bs-target="#educacionModal"></app-btn-edit>
+                    <app-btn-delete (click)="ejecutarBorrar()"></app-btn-delete>
+                    <app-btn-asc (click)="moverArriba(educacion?.posicion)"></app-btn-asc>
+                    <app-btn-des (click)="moverAbajo(educacion?.posicion)"></app-btn-des>
+                </div>
+            </div>
+            <p>{{educacion?.titulo}}</p>
+            <p class="pb-0">
+                <span>{{FormatDate(educacion?.fechaInicio)}}</span>-<span>{{FormatDate(educacion?.fechaFin)}}</span>
+            </p>
+        </div>
+    </div>
+</div>
+<br>

@@ -1,0 +1,21 @@
+<div>
+    <div class="d-sm-flex align-items-center">
+        <div class="text-center logo-proyecto p-4">
+            <img *ngIf="!ValidImg()" class="rounded" width="200" src="../../../assets/img/logodefecto.png" alt="{{proyecto?.titulo}}">
+            <img *ngIf="ValidImg()" class="rounded" src="{{proyecto?.urlImagen}}" width="200" alt="{{proyecto?.titulo}}">
+        </div>
+        <div class="" style="width: -webkit-fill-available;">
+            <div class="d-flex justify-content-between">
+                <h6>{{proyecto?.titulo}}</h6>
+                <div *ngIf="Login()" class="d-inline-block">
+                    <app-btn-edit (click)="ejecutarEvento()" data-bs-toggle="modal" data-bs-target="#proyectoModal"></app-btn-edit>
+                    <app-btn-delete (click)="ejecutarBorrar()"></app-btn-delete>
+                    <app-btn-asc (click)="moverArriba(proyecto?.posicion)"></app-btn-asc>
+                    <app-btn-des (click)="moverAbajo(proyecto?.posicion)"></app-btn-des>
+                </div>
+            </div>
+            <p style="text-align: justify;">{{proyecto?.descripcion}}</p>
+        </div>
+    </div>
+</div>
+<br>

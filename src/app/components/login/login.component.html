@@ -1,0 +1,36 @@
+<div class="modal fade" id="loginModal" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="!authService.logIn">
+    <div class="modal-dialog">
+        <div class="modal-content" *ngIf="!authService.logIn">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Iniciar Sesión</h5>
+                <button id="btn-close-modal-login" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
+                    <div>
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                    </div>
+                    <div *ngIf="Email?.errors" class="mb-3 text-danger">    
+                        <small *ngIf="Email?.hasError('required')">
+                            El email es requerido.
+                        </small>
+                        <small *ngIf="Email?.hasError('email')">
+                            El formato del email debe ser válido.
+                        </small>
+                    </div>
+                    <div class="mt-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" required>
+                    </div>
+                    <div *ngIf="Password?.errors" class="text-danger">    
+                        <small *ngIf="Password?.hasError('required')">
+                            El password es requerido.
+                        </small>
+                    </div>
+                    <button type="submit" class="btn btn-success mt-3">Loguearse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
